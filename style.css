@@ -1,0 +1,13 @@
+.map1 {
+    width: 120vh;
+    height: 85vh;
+    margin:5vh;
+    margin-top:12vh;
+}
+button:focus {
+    outline: 0;
+}
+
+.navbar .dropdown-menu .form-control {
+    width: 200px;
+}
