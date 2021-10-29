@@ -1,7 +1,12 @@
 .map1 {
-    width: 130vh;
-    height: 93vh;
-    margin-top: 7.249vh;
+    width: 100vh;
+    height: 89vh;
+    margin-top: 8vh;
+    margin-right: 15vh;
+    padding: 25px;
+    background-color:blueviolet;
+    
+    border-radius: 50px;
 }
 button:focus {
     outline: 0;
