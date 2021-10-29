@@ -6,7 +6,7 @@
     padding: 25px;
     background-color:blueviolet;
     
-    border-radius: 50px;
+    border-radius: 6vh;
 }
 button:focus {
     outline: 0;
@@ -14,4 +14,18 @@ button:focus {
 
 .navbar .dropdown-menu .form-control {
     width: 200px;
+}
+.timeline{
+    background-color: blueviolet;
+    margin-top: 8vh;
+    width: 40vh;
+    height: 35vh;
+    border-radius: 6vh;
+}
+.timeline-ic{
+    background-color: cornsilk;
+    border-radius: 5vh;
+    width: 36vh;
+    height: 27vh;
+    margin: 2vh;
 }
