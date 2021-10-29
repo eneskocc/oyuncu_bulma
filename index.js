@@ -1,93 +1,56 @@
-ymaps.ready(init);
-let main = "";
-let topLat=0;
-let topLng=0;
-let sayac=0;
-function init() {
-    var glyphNames = ['asterisk', 'plus', 'euro', 'eur', 'minus', 'cloud', 'envelope',
-    'pencil', 'glass', 'music', 'search', 'heart', 'star', 'star-empty', 'user', 'film',
-    'th-large', 'th', 'th-list', 'ok', 'remove', 'zoom-in', 'zoom-out', 'off', 'signal',
-    'cog', 'trash', 'home', 'file', 'time', 'road', 'download-alt', 'download', 'upload', 'inbox',
-    'play-circle', 'repeat', 'refresh', 'list-alt', 'lock', 'flag', 'headphones', 'volume-off',
-    'volume-down', 'volume-up', 'qrcode', 'barcode', 'tag', 'tags', 'book', 'bookmark', 'print',
-    'camera', 'font', 'bold', 'italic', 'text-height', 'text-width', 'align-left', 'align-center',
-    'align-right', 'align-justify', 'list', 'indent-left', 'indent-right', 'facetime-video',
-    'picture', 'map-marker', 'adjust', 'tint', 'edit', 'share', 'check', 'move', 'step-backward',
-    'fast-backward', 'backward', 'play', 'pause', 'stop', 'forward', 'fast-forward', 'step-forward',
-    'eject', 'chevron-left', 'chevron-right', 'plus-sign', 'minus-sign', 'remove-sign', 'ok-sign',
-    'question-sign', 'info-sign', 'screenshot', 'remove-circle', 'ok-circle', 'ban-circle', 'arrow-left',
-    'arrow-right', 'arrow-up', 'arrow-down', 'share-alt', 'resize-full', 'resize-small', 'exclamation-sign',
-    'gift', 'leaf', 'fire', 'eye-open', 'eye-close', 'warning-sign', 'plane', 'calendar', 'random', 'comment',
-    'magnet', 'chevron-up', 'chevron-down', 'retweet', 'shopping-cart', 'folder-close', 'folder-open',
-    'resize-vertical', 'resize-horizontal', 'hdd', 'bullhorn', 'bell', 'certificate', 'thumbs-up', 'thumbs-down',
-    'hand-right', 'hand-left', 'hand-up', 'hand-down', 'circle-arrow-right', 'circle-arrow-left', 'circle-arrow-up',
-    'circle-arrow-down', 'globe', 'wrench', 'tasks', 'filter', 'briefcase', 'fullscreen', 'dashboard', 'paperclip',
-    'heart-empty', 'link', 'phone', 'pushpin', 'usd', 'gbp', 'sort', 'sort-by-alphabet', 'sort-by-alphabet-alt',
-    'sort-by-order', 'sort-by-order-alt', 'sort-by-attributes', 'sort-by-attributes-alt', 'unchecked', 'expand',
-    'collapse-down', 'collapse-up', 'log-in', 'flash', 'log-out', 'new-window', 'record', 'save', 'open', 'saved',
-    'import', 'export', 'send', 'floppy-disk', 'floppy-saved', 'floppy-remove', 'floppy-save', 'floppy-open',
-    'credit-card', 'transfer', 'cutlery', 'header', 'compressed', 'earphone', 'phone-alt', 'tower', 'stats', 'sd-video',
-    'hd-video', 'subtitles', 'sound-stereo', 'sound-dolby', 'sound-5-1', 'sound-6-1', 'sound-7-1', 'copyright-mark',
-    'registration-mark', 'cloud-download', 'cloud-upload', 'tree-conifer', 'tree-deciduous', 'cd', 'save-file', 'open-file',
-    'level-up', 'copy', 'paste', 'alert', 'equalizer', 'king', 'queen', 'pawn', 'bishop', 'knight', 'baby-formula', 'tent',
-    'blackboard', 'bed', 'apple', 'erase', 'hourglass', 'lamp', 'duplicate', 'piggy-bank', 'scissors', 'bitcoin', 'btc', 'xbt',
-    'yen', 'jpy', 'ruble', 'rub', 'scale', 'ice-lolly', 'ice-lolly-tasted', 'education', 'option-horizontal', 'option-vertical',
-    'menu-hamburger', 'modal-window', 'oil', 'grain', 'sunglasses', 'text-size', 'text-color', 'text-background', 'object-align-top',
-    'object-align-bottom', 'object-align-horizontal', 'object-align-left', 'object-align-vertical', 'object-align-right',
-    'triangle-right', 'triangle-left', 'triangle-bottom', 'triangle-top', 'console', 'superscript', 'subscript', 'menu-left',
-    'menu-right', 'menu-down', 'menu-up'];
+ymaps.ready(function () {
+    var myMap = new ymaps.Map('map', {
+            center: [55.751574, 37.573856],
+            zoom: 9
+        }, {
+            searchControlProvider: 'yandex#search'
+        }),
+        // Values for icon colors.
+        placemarkColors = [
+            '#DB425A', '#4C4DA2', '#00DEAD', '#D73AD2',
+            '#F8CC4D', '#F88D00', '#AC646C', '#548FB7'
+        ],
+        clusterer = new ymaps.Clusterer({
+            // The layout of the pieChart cluster placemark.
+            clusterIconLayout: 'default#pieChart',
+            // Radius of the diagram, in pixels.
+            clusterIconPieChartRadius: 25,
+            // The radius of the central part of the layout.
+            clusterIconPieChartCoreRadius: 10,
+            // Width of the sector dividing lines and diagram outline.
+            clusterIconPieChartStrokeWidth: 3
+        }),
+        points = [
+            [55.831903, 37.411961], [55.763338, 37.565466], [55.763338, 37.565466], [55.744522, 37.616378],
+            [55.780898, 37.642889], [55.793559, 37.435983], [55.800584, 37.675638], [55.716733, 37.589988],
+            [55.775724, 37.560840], [55.822144, 37.433781], [55.874170, 37.669838], [55.716770, 37.482338],
+            [55.780850, 37.750210], [55.810906, 37.654142], [55.865386, 37.713329], [55.847121, 37.525797],
+            [55.778655, 37.710743], [55.623415, 37.717934], [55.863193, 37.737000], [55.866770, 37.760113],
+            [55.698261, 37.730838], [55.633800, 37.564769], [55.639996, 37.539400], [55.690230, 37.405853],
+            [55.775970, 37.512900], [55.775777, 37.442180], [55.811814, 37.440448], [55.751841, 37.404853],
+            [55.627303, 37.728976], [55.816515, 37.597163], [55.664352, 37.689397], [55.679195, 37.600961],
+            [55.673873, 37.658425], [55.681006, 37.605126], [55.876327, 37.431744], [55.843363, 37.778445],
+            [55.875445, 37.549348], [55.662903, 37.702087], [55.746099, 37.434113], [55.838660, 37.712326],
+            [55.774838, 37.415725], [55.871539, 37.630223], [55.657037, 37.571271], [55.691046, 37.711026],
+            [55.803972, 37.659610], [55.616448, 37.452759], [55.781329, 37.442781], [55.844708, 37.748870],
+            [55.723123, 37.406067], [55.858585, 37.484980]
+        ],
+        geoObjects = [];
 
-var myMap = new ymaps.Map("map", {
-        center: [55.76, 37.64],
-        zoom: 11
-    }, {
-        searchControlProvider: 'yandex#search'
+    for (var i = 0, len = points.length; i < len; i++) {
+        geoObjects[i] = new ymaps.Placemark(points[i], {}, {
+            iconColor: getRandomColor()
+        });
+    }
+
+    clusterer.add(geoObjects);
+    myMap.geoObjects.add(clusterer);
+
+    myMap.setBounds(clusterer.getBounds(), {
+        checkZoomRange: true
     });
-myMap.geoObjects
-    .add(new ymaps.Placemark([55.684758, 37.738521], {}, {
-        preset: 'islands#glyphIcon',
-        // Defining the glyph icon name.
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)],
-        // Defining the glyph icon color.
-        iconGlyphColor: 'blue',
-        // Defining the placemark color.
-        iconColor: 'blue'
-    }))
-    .add(new ymaps.Placemark([55.833436, 37.715175], {}, {
-        preset: 'islands#glyphCircleIcon',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)]
-    }))
-    .add(new ymaps.Placemark([55.687086, 37.529789], {}, {
-        preset: 'islands#king',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)]
-    }))
-    .add(new ymaps.Placemark([55.782392, 37.614924], {}, {
-        preset: 'islands#redGlyphCircleIcon',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)]
-    }))
-    .add(new ymaps.Placemark([55.642063, 37.656123], {}, {
-        preset: 'islands#glyphIcon',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)],
-        iconGlyphColor: 'green',
-        iconColor: 'green'
-    }))
-    .add(new ymaps.Placemark([55.826479, 37.487208], {}, {
-        preset: 'islands#glyphCircleIcon',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)],
-        iconGlyphColor: 'green',
-        iconColor: 'green'
-    }))
-    .add(new ymaps.Placemark([55.694843, 37.435023], {}, {
-        preset: 'islands#glyphIcon',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)],
-        iconGlyphColor: '#0095b6',
-        iconColor: '#0095b6'
-    }))
-    .add(new ymaps.Placemark([55.790139, 37.814052], {}, {
-        preset: 'islands#asterisk',
-        iconGlyph: glyphNames[Math.floor(Math.random() * glyphNames.length)],
-        iconGlyphColor: '#3caa3c',
-        iconColor: '#3caa3c'
-    }));
-console.log(glyphNames[Math.floor(Math.random() * glyphNames.length)]);
-}
+
+    function getRandomColor() {
+        return placemarkColors[Math.round(Math.random() * placemarkColors.length)];
+    }
+});
