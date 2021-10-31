@@ -19,7 +19,7 @@ button:focus {
     background-color: blueviolet;
     margin-top: 8vh;
     width: 40vh;
-    height: 35vh;
+    height: 36vh;
     border-radius: 6vh;
 }
 .timeline-ic{
@@ -28,4 +28,29 @@ button:focus {
     width: 36vh;
     height: 27vh;
     margin: 2vh;
+    margin-bottom: 0vh;
+}
+.profil{
+    margin-top: 1vh;
+    margin-left: 4vh;
+    background-color:darkorchid;
+    width: 2vh;
+    height: 7vh;
+}
+.profil-name{
+    background-color: darkslateblue;
+    color: floralwhite;
+    font-size: 2vh;
+    padding: 2vh;
+    margin: 1vh;
+    border-radius: 5vh;
+    margin-right: 1vh;
+    width: 8vh;
+    height: 7vh;
+}
+.icon-down{
+   margin: 2vh;
+   margin-top: 0vh;
+   height: 3vh;
+   font-size: 5vh;
 }
