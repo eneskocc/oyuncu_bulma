@@ -1,9 +1,11 @@
 .map1 {
-    width: 100vh;
-    height: 89vh;
-    margin-top: 8vh;
+    
+    width: 78vh;
+    height: 78vh;
+    margin-top: 10vh;
     margin-right: 15vh;
     padding: 25px;
+    position: fixed;
     background-color:blueviolet;
     
     border-radius: 6vh;
@@ -11,13 +13,19 @@
 button:focus {
     outline: 0;
 }
-
+.nav-top{
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    position: fixed;
+}
 .navbar .dropdown-menu .form-control {
+  
     width: 200px;
 }
 .timeline{
     background-color: blueviolet;
-    margin-top: 8vh;
+    margin-top: 10vh;
     width: 40vh;
     height: 36vh;
     border-radius: 6vh;
